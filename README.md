@@ -9,3 +9,4 @@ Also AWS CLI returns JSON not csv
 
 So...it looks like developing an app from the examply Python code is the way to go...
 
+Note that if we need to breakdown the PDFs in to individual files we can use [ImageMagick](https://wiki.python.org/moin/ImageMagick) (python or command line)
