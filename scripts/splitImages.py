@@ -1,8 +1,9 @@
 # python script to split up a PDF into multiple jpegs
 # start off hard coding it, but will add arguments later
 
+import argparse
 from pdf2image import convert_from_path
-from os import path
+import os
 
 from pdf2image.exceptions import (
     PDFInfoNotInstalledError,
@@ -10,11 +11,23 @@ from pdf2image.exceptions import (
     PDFSyntaxError
 )
 
+# Set up the parser
 
-pdfpath = "/Users/jmaloof/Library/CloudStorage/GoogleDrive-jnmaloof@ucdavis.edu/Shared drives/IntBioTeam/Common Gardens/Data Scans/Size_survey_20221128.pdf"
+parser = argparse.ArgumentParser(description='Split a multipage PDF into individual jpegs')
 
-file = path.basename(pdfpath)
+parser.add_argument('input', help = "path to a PDF file" )
+parser.add_argument('--out', help = "optional output folder for jpegs", default="split_temp")
 
-file = path.splitext(file)[0] + "-"
+#args = parser.parse_args()
 
-images = convert_from_path(pdfpath, dpi=300, output_folder = "test_folder", fmt="jpg", output_file=file)
+args = parser.parse_args(['/Users/jmaloof/Library/CloudStorage/GoogleDrive-jnmaloof@ucdavis.edu/Shared drives/IntBioTeam/Common Gardens/Data Scans/Size_survey_20221128.pdf',
+                '--out', 'test_folder'])
+
+if(not os.path.exists(args.out)):
+    os.makedirs(args.out)
+
+file = os.path.basename(args.input)
+
+file = os.path.splitext(file)[0] + "-"
+
+images = convert_from_path(args.input, dpi=300, output_folder = args.out, fmt="jpg", output_file=file)
