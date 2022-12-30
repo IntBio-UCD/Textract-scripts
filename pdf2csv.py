@@ -106,7 +106,7 @@ def generate_table_csv(table_result, blocks_map, table_index):
 
 # Set up the parser
 
-parser = argparse.ArgumentParser(description='Split a multipage PDF into individual jpegs')
+parser = argparse.ArgumentParser(description='Use textract to extract text from a [multipage] PDF of data sheets into csv files')
 
 parser.add_argument('pdf', help = "PDF file to process" )
 parser.add_argument('-o', '--out', dest = 'csvpath', help = "Folder for output csv files", default = ".")
@@ -115,23 +115,25 @@ args = parser.parse_args()
 
 # temp directory for jpegs:
 
-jpeg_dir = tempfile.TemporaryDirectory()
+jpeg_temp_dir = tempfile.TemporaryDirectory()
+jpeg_dir = jpeg_temp_dir.name
 
-# Get the file and split it up
 
-if(not os.path.exists(args.out)):
-    os.makedirs(args.out)
+if(not os.path.exists(args.csvpath)):
+    os.makedirs(args.csvpath)
 
 filestem = os.path.basename(args.pdf)
 
 filestem = os.path.splitext(filestem)[0] + "-"
 
-images = convert_from_path(args.pdf, dpi=300, output_folder = args.out, fmt="jpg", output_file=filestem)
+# Get the file and split it up
+
+images = convert_from_path(args.pdf, dpi=300, output_folder = jpeg_dir, fmt="jpg", output_file=filestem)
 
 for jfile in os.listdir(jpeg_dir):
     table_csv = get_table_csv_results(os.path.join(jpeg_dir,jfile))
 
-    output_file = os.path.join(args.out, os.path.splitext(jfile)[0] + ".csv")
+    output_file = os.path.join(args.csvpath, os.path.splitext(jfile)[0] + ".csv")
 
     # replace content
     with open(output_file, "wt") as fout:

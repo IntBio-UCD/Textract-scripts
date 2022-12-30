@@ -1,12 +1,16 @@
 # Textract-scripts
-Notes and scripts for interacting with AWS Textract to process hand written data sheets
+This script takes an input PDF that is data sheet scans and returns a csv with the contents.
 
 AWS's documentation is [here](https://docs.aws.amazon.com/textract/index.html)
 
-If you're using the AWS CLI, you can't pass image bytes to Amazon Textract operations. Instead, you must reference an image stored in an Amazon S3 bucket.
+## Install prerequisites
+    conda create -n textract python=3.10.8 poppler
+    conda activate textract
+    pip install boto3 #aws bindings
+    pip install pdf2image
 
-Also AWS CLI returns JSON not csv
+## AWS authentication.
+You will need an AWS KEY and Secret.  See AWS for more info.
 
-So...it looks like developing an app from the examply Python code is the way to go...
-
-Note that if we need to breakdown the PDFs in to individual files we can use [ImageMagick](https://wiki.python.org/moin/ImageMagick) (python or command line)
+## To run the script
+     python pdf2csv.py UCD2022_2023/DataScans/Size_survey_20221128.pdf -o UCD2022_2023/RawCSVs/  
