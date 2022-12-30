@@ -111,11 +111,7 @@ parser = argparse.ArgumentParser(description='Split a multipage PDF into individ
 parser.add_argument('pdf', help = "PDF file to process" )
 parser.add_argument('-o', '--out', dest = 'csvpath', help = "Folder for output csv files", default = ".")
 
-#args = parser.parse_args()
-
-args = parser.parse_args(['/Users/jmaloof/Library/CloudStorage/GoogleDrive-jnmaloof@ucdavis.edu/Shared drives/IntBioTeam/Common Gardens/Data Scans/Size_survey_20221128.pdf',
-                '--out', 'test_folder'])
-
+args = parser.parse_args()
 
 # temp directory for jpegs:
 
