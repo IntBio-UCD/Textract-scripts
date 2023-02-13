@@ -1,5 +1,4 @@
 # python script to split up a PDF into multiple jpegs
-# start off hard coding it, but will add arguments later
 
 import argparse
 import os
@@ -83,7 +82,7 @@ def get_table_csv_results(file_name):
     csv = ''
     for index, table in enumerate(table_blocks):
         csv += generate_table_csv(table, blocks_map, index +1)
-        csv += '\n\n'
+#        csv += '\n\n'
 
     return csv
 
@@ -93,7 +92,8 @@ def generate_table_csv(table_result, blocks_map, table_index):
     table_id = 'Table_' + str(table_index)
     
     # get cells.
-    csv = 'Table: {0}\n\n'.format(table_id)
+ #   csv = 'Table: {0}\n\n'.format(table_id)
+    csv = '' #initiate the csv
 
     for row_index, cols in rows.items():
         
@@ -101,46 +101,60 @@ def generate_table_csv(table_result, blocks_map, table_index):
             csv += '{}'.format(text) + ","
         csv += '\n'
         
-    csv += '\n\n\n'
+ #   csv += '\n\n\n'
     return csv
 
 # Set up the parser
 
 parser = argparse.ArgumentParser(description='Use textract to extract text from a [multipage] PDF of data sheets into csv files')
-
-parser.add_argument('pdf', help = "PDF file to process" )
 parser.add_argument('-o', '--out', dest = 'csvpath', help = "Folder for output csv files", default = ".")
 
+parser.add_argument('pdfs', help = "PDF file or files to process", nargs = "+" )
+
 args = parser.parse_args()
-
-# temp directory for jpegs:
-
-jpeg_temp_dir = tempfile.TemporaryDirectory()
-jpeg_dir = jpeg_temp_dir.name
-
 
 if(not os.path.exists(args.csvpath)):
     os.makedirs(args.csvpath)
 
-filestem = os.path.basename(args.pdf)
+for pdf in args.pdfs:
 
-filestem = os.path.splitext(filestem)[0] + "-"
+    # create temp directory for jpegs:
+    jpeg_temp_dir = tempfile.TemporaryDirectory()
+    jpeg_dir = jpeg_temp_dir.name
 
-# Get the file and split it up
 
-images = convert_from_path(args.pdf, dpi=300, output_folder = jpeg_dir, fmt="jpg", output_file=filestem)
+    filestem = os.path.basename(pdf)
 
-for jfile in os.listdir(jpeg_dir):
-    table_csv = get_table_csv_results(os.path.join(jpeg_dir,jfile))
+    filestem = os.path.splitext(filestem)[0]
 
-    output_file = os.path.join(args.csvpath, os.path.splitext(jfile)[0] + ".csv")
+    # define output file path and open it.  Note: all csvs from a PDF appended into a single csv
+    output_file = os.path.join(args.csvpath, filestem + ".csv")
+    csv = open(output_file, "wt") #will overwite existing content
 
-    # replace content
-    with open(output_file, "wt") as fout:
-        fout.write(table_csv)
+    # Get the file and split it up
+
+    images = convert_from_path(pdf, dpi=300, output_folder = jpeg_dir, fmt="jpg", output_file=filestem + "-")
+
+    jfiles = os.listdir(jpeg_dir)
+
+    jfiles.sort()
+
+    for jfile in jfiles:
+        # print(jfile)
+        table_csv = get_table_csv_results(os.path.join(jpeg_dir,jfile))
+        # print(table_csv)
+
+
+        # append content
+        csv.write(table_csv)
+
+
+    csv.close()
 
     # show the results
     print('CSV OUTPUT FILE: ', output_file)
+
+    jpeg_temp_dir.cleanup() 
 
 
 
