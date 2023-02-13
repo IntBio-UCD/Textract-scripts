@@ -22,5 +22,7 @@ You will need an AWS KEY and Secret.  See AWS for more info.
      # then run the program.  
      python pdf2csv.py  -o UCD2022_2023/RawCSVs/ UCD2022_2023/DataScans/*.pdf   
      # this will process ALL pdf files in `UCD2022_2023/DataScans`.
-     # you will need to manually move them to `UCD2023/DataScans-Processed/` afterwards, e.g.
-     mv UCD2022-2023/DataScans/*.pdf UCD2022-2023/DataScans-Processed
+     # you will need to manually move them to `UCD2022_2023/DataScans-Processed/` afterwards, e.g.
+     mv UCD2022_2023/DataScans/*.pdf UCD2022_2023/DataScans-Processed
+
+Note: __Existing csvs with the same name will be overwritten__
