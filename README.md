@@ -13,7 +13,7 @@ You will need an AWS KEY and Secret.  See AWS for more info.  (Or ask Julin for 
 
 Once you have a key, you will need [AWS CLI](https://aws.amazon.com/cli/) to manage your access to AWS.
 
-You can either download an installer from the above link, or on a mac with [homebrew]() installed:
+You can either download an installer from the above link, or on a mac with [homebrew](https://brew.sh/) installed:
     brew install awcli
 
 Then configure aws with your key.   You can leave region as us-east-1 ; select text for your default output type.
