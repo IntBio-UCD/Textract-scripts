@@ -60,9 +60,9 @@ you will need to have google drive running on your computer.
 Next, run the script.  
 
      python pdf2csv.py  -o UCD2022_2023/RawCSVs/ UCD2022_2023/DataScans/*.pdf   
-     # this will process ALL pdf files in `UCD2022_2023/DataScans`.
+     # this will process ALL pdf files in `UCD2022_2023/DataScans` and create corresponding csvs in `UCD2022_2023/RawCSVs/`
 
-you will need to manually move the PDFs to `UCD2022_2023/DataScans-Processed/` afterwards, e.g.
+__IMPORTANT__ you will need to manually move the PDFs to `UCD2022_2023/DataScans-Processed/` afterwards, e.g.
 
      mv UCD2022_2023/DataScans/*.pdf UCD2022_2023/DataScans-Processed
 
