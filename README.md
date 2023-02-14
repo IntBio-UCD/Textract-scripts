@@ -15,7 +15,7 @@ You can either download an installer from the above link, or on a mac with [home
 
     brew install awcli
 
-Then configure aws with your key.   You can leave region as us-east-1 ; select text for your default output type.
+Then configure aws with your key.   You set region as `us-west-2` or `us-east-2` ; select `text` for your default output type.  Note us-west-1 (Northern California) is more expensive than the others. 
 
     aws configure
 
