@@ -43,6 +43,8 @@ First `cd` to wherever you want the repository to go.  The clone it.
 ## Google Drive
 If your images are stored on google drive (e.g. Intbio project), you will need to have google drive running on your computer.
 
+You will also need to enable offline access for the folder that has the images.  On a mac this means clicking on the "cloud" icon in the finder on the folder or right-clicking on the folder and selecting "available offline".
+
 It is easiest if you make a symbolic link pointing to the data folder `UCD2022_2023` from the repository.  On my computer it is like this:
 
      cd ~/git/Textract-scripts
@@ -54,8 +56,6 @@ Now we can run the script!
 First activate the conda environment:
 
      conda activate textract
-
-you will need to have google drive running on your computer.
      
 Next, run the script.  
 
