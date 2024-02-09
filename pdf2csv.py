@@ -3,6 +3,7 @@
 import argparse
 import os
 import boto3
+import glob
 from pdf2image import convert_from_path
 from pdf2image.exceptions import (
     PDFInfoNotInstalledError,
@@ -109,14 +110,19 @@ def generate_table_csv(table_result, blocks_map, table_index):
 parser = argparse.ArgumentParser(description='Use textract to extract text from a [multipage] PDF of data sheets into csv files')
 parser.add_argument('-o', '--out', dest = 'csvpath', help = "Folder for output csv files", default = ".")
 
-parser.add_argument('pdfs', help = "PDF file or files to process", nargs = "+" )
+parser.add_argument('pdfs', help = "PDF file or files, or a single directory that contains PDF files to process", nargs = "+" )
 
 args = parser.parse_args()
 
 if(not os.path.exists(args.csvpath)):
     os.makedirs(args.csvpath)
 
-for pdf in args.pdfs:
+if(os.path.isdir(args.pdfs)):
+    pdfFiles = glob.glob(os.path.join(args.pdfs, '*.pdf'))
+else:
+    pdfFiles = args.pdfs
+
+for pdf in pdfFiles:
 
     # create temp directory for jpegs:
     jpeg_temp_dir = tempfile.TemporaryDirectory()
