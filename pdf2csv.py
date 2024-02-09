@@ -117,8 +117,8 @@ args = parser.parse_args()
 if(not os.path.exists(args.csvpath)):
     os.makedirs(args.csvpath)
 
-if(os.path.isdir(args.pdfs)):
-    pdfFiles = glob.glob(os.path.join(args.pdfs, '*.pdf'))
+if(os.path.isdir(args.pdfs[0])):
+    pdfFiles = glob.glob(os.path.join(args.pdfs[0], '*.pdf'))
 else:
     pdfFiles = args.pdfs
 

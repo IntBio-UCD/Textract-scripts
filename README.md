@@ -74,7 +74,7 @@ __MAC:__
      ln -s ~/Library/CloudStorage/GoogleDrive-jnmaloof@ucdavis.edu/Shared\ drives/IntBioTeam/Common\ Gardens/UCD2022_2023/ ./
 
 __PC:__
-We do not have this figured out yet. `mklink` gave a permissions error.  Creating a link in Windows Explorer didn't create a link that worked at the command prompt.
+We do not have this figured out yet. `mklink` gave a permissions error.  Have to use full path.
 
 ## Run the script
 Now we can run the script!
@@ -85,13 +85,19 @@ First activate the conda environment:
 
      conda activate textract
      
-Next, run the script.  
+Next, run the script.  You can provide a single PDF, multiple PDFs, or a single directory that contains PDFs.
 
 __MAC__ with symbolic links to the Google Drive folder
+    # example giving multiple PDF files as input
      python pdf2csv.py  -o UCD2022_2023/RawCSVs/ UCD2022_2023/DataScans/*.pdf   
      # this will process ALL pdf files in `UCD2022_2023/DataScans` and create corresponding csvs in `UCD2022_2023/RawCSVs/`
 
-__PC__ without symbolic links.  We can't get file globbing to work, so currently have to run a separate command for each file.
+     # Alternate: just give the directory name.  All PDFs in the directory will be processed.  (But does not search recursively)
+     python pdf2csv.py  -o UCD2022_2023/RawCSVs/ UCD2022_2023/DataScans/ 
+     # this will process ALL pdf files in `UCD2022_2023/DataScans` and create corresponding csvs in `UCD2022_2023/RawCSVs/`
+
+
+__PC__ without symbolic links.  We can't get file globbing to work, so do not use "*" in the command. But you can give a directory and all PDF files in that directory will be processed.  We don't have symbolic links figured out yet.
     Maya please put in an example command.
 
 __IMPORTANT__ you will need to manually move the PDFs to `UCD2022_2023/DataScans-Processed/` afterwards, e.g.
