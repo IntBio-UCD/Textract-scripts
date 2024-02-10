@@ -160,7 +160,7 @@ for pdf in pdfFiles:
     # show the results
     print('CSV OUTPUT FILE: ', output_file)
 
-    jpeg_temp_dir.cleanup() 
+    jpeg_temp_dir.cleanup(ignore_cleanup_errors=True) 
 
 
 
