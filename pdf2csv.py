@@ -125,7 +125,7 @@ else:
 for pdf in pdfFiles:
 
     # create temp directory for jpegs:
-    jpeg_temp_dir = tempfile.TemporaryDirectory()
+    jpeg_temp_dir = tempfile.TemporaryDirectory(ignore_cleanup_errors=True)
     jpeg_dir = jpeg_temp_dir.name
 
 
@@ -160,7 +160,7 @@ for pdf in pdfFiles:
     # show the results
     print('CSV OUTPUT FILE: ', output_file)
 
-    jpeg_temp_dir.cleanup(ignore_cleanup_errors=True) 
+    jpeg_temp_dir.cleanup() 
 
 
 
