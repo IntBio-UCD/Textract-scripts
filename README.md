@@ -61,8 +61,10 @@ __MAC:__
     git clone https://github.com/IntBio-UCD/Textract-scripts.git
 
 __PC:__
-Similar to above, but use `\` instead of `/`.  
 
+    cd C:\Users\marik\git
+    git clone https://github.com/IntBio-UCD/Textract-scripts.git
+    
 ## Google Drive
 If your images are stored on google drive (e.g. Intbio project), you will need to have google drive running on your computer.
 
@@ -78,8 +80,8 @@ __MAC:__
 __PC:__
 Start Anaconda Prompt as an administrator (right click on the icon and select run as Adminstrator)
 
-cd C:\Users\marik\git\Textract-scripts
-mklink UCD2023_2024 "G:\Shared drives\IntBioTeam\Common Gardens\UCD2023_2024"
+    cd C:\Users\marik\git\Textract-scripts
+    mklink UCD2023_2024 "G:\Shared drives\IntBioTeam\Common Gardens\UCD2023_2024"
 
 ## Run the script
 Now we can run the script!
@@ -103,6 +105,7 @@ __PC__
 Next, run the script.  You can provide a single PDF, multiple PDFs, or a single directory that contains PDFs.
 
 __MAC__ with symbolic links to the Google Drive folder
+
     # example giving multiple PDF files as input
      python pdf2csv.py  -o UCD2022_2023/RawCSVs/ UCD2022_2023/DataScans/*.pdf   
      # this will process ALL pdf files in `UCD2022_2023/DataScans` and create corresponding csvs in `UCD2022_2023/RawCSVs/`
