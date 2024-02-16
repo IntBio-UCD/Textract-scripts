@@ -121,6 +121,14 @@ __PC__ with symbolic links.  We can't get file globbing to work, so do not use "
     
 __IMPORTANT__ you will need to manually move the PDFs to `UCD2022_2023/DataScans-Processed/` afterwards, e.g.
 
+__MAC__
+
      mv UCD2022_2023/DataScans/*.pdf UCD2022_2023/DataScans-Processed
+
+__PC__
+
+    move UCD2023_2024\DataScans\*.pdf UCD2023_2024\DataScans-Processed
+
+(Or, used the Finder / File Explorer GUI to move the files)
 
 Note: __Existing csvs with the same name will be overwritten__
