@@ -56,6 +56,7 @@ Open terminal (MAC) or Anaconda Prompt (PC)
 First `cd` to wherever you want the repository to go.  Then clone it.
 
 __MAC:__
+
     cd ~/git
     git clone https://github.com/IntBio-UCD/Textract-scripts.git
 
@@ -70,11 +71,14 @@ You will also need to enable offline access for the folder that has the images. 
 It is easiest if you make a symbolic link pointing to the data folder `UCD2022_2023` from the repository.  On my computer it is like this:
 
 __MAC:__
+
      cd ~/git/Textract-scripts
      ln -s ~/Library/CloudStorage/GoogleDrive-jnmaloof@ucdavis.edu/Shared\ drives/IntBioTeam/Common\ Gardens/UCD2022_2023/ ./
 
 __PC:__
-We do not have this figured out yet. `mklink` gave a permissions error.  Have to use full path.
+Start Anaconda Prompt as an administrator (right click on the icon and select run as Adminstrator)
+
+    cd <textract repository...Maya, please fill in >
 
 ## Run the script
 Now we can run the script!
